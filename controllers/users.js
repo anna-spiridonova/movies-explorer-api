@@ -23,7 +23,7 @@ const register = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Переданы некорректные данные при создании пользователя'));
+        next(new BadRequestError(err));
       } else if (err.code === 11000) {
         next(new ConflictError('Пользователь с таким email уже существует'));
       } else {
@@ -78,7 +78,7 @@ const editProfile = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Переданы некорректные данные при обновлении профиля'));
+        next(new BadRequestError(err));
       } else if (err.name === 'DocumentNotFoundError') {
         next(new NotFoundError('Пользователь с указанным id не найден'));
       } else {

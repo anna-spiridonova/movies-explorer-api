@@ -18,8 +18,7 @@ const createMovie = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        // res.send(err.message);
-        next(new BadRequestError('Переданы некорректные данные при создании карточки'));
+        next(new BadRequestError(err));
       } else {
         next(err);
       }

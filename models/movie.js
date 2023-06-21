@@ -4,46 +4,46 @@ const validator = require('validator');
 const movieSchema = new mongoose.Schema({
   country: {
     type: String,
-    required: true,
+    required: [true, 'Поле "country" должно быть заполнено'],
   },
   director: {
     type: String,
-    required: true,
+    required: [true, 'Поле "director" должно быть заполнено'],
   },
   duration: {
     type: Number,
-    required: true,
+    required: [true, 'Поле "duration" должно быть заполнено'],
   },
   year: {
     type: String,
-    required: true,
+    required: [true, 'Поле "year" должно быть заполнено'],
   },
   description: {
     type: String,
-    required: true,
+    required: [true, 'Поле "description" должно быть заполнено'],
   },
   image: {
     type: String,
-    required: true,
+    required: [true, 'Поле "image" должно быть заполнено'],
     validate: {
       validator: (v) => validator.isURL(v),
-      message: 'Некорректная ссылка',
+      message: 'Некорректная ссылка в поле "image"',
     },
   },
   trailerLink: {
     type: String,
-    required: true,
+    required: [true, 'Поле "trailerLink" должно быть заполнено'],
     validate: {
       validator: (v) => validator.isURL(v),
-      message: 'Некорректная ссылка',
+      message: 'Некорректная ссылка в поле "trailerLink"',
     },
   },
   thumbnail: {
     type: String,
-    required: true,
+    required: [true, 'Поле "thumbnail" должно быть заполнено'],
     validate: {
       validator: (v) => validator.isURL(v),
-      message: 'Некорректная ссылка',
+      message: 'Некорректная ссылка в поле "thumbnail"',
     },
   },
   owner: {
@@ -53,15 +53,15 @@ const movieSchema = new mongoose.Schema({
   },
   movieId: {
     type: Number,
-    required: true,
+    required: [true, 'Поле "movieId" должно быть заполнено'],
   },
   nameRU: {
     type: String,
-    required: true,
+    required: [true, 'Поле "nameRU" должно быть заполнено'],
   },
   nameEN: {
     type: String,
-    required: true,
+    required: [true, 'Поле "nameEN" должно быть заполнено'],
   },
 });
 

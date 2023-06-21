@@ -1,7 +1,10 @@
 const router = require('express').Router();
-// const { celebrate, Joi } = require('celebrate');
 const auth = require('../middlewares/auth');
-// const urlPattern = require('../utils/constants');
+const {
+  registerValidator,
+  loginValidator,
+  editProfileValidator,
+} = require('../middlewares/validator');
 
 const {
   getUser,
@@ -13,11 +16,13 @@ const {
 
 router.post(
   '/signup',
+  registerValidator,
   register,
 );
 
 router.post(
   '/signin',
+  loginValidator,
   login,
 );
 
@@ -28,6 +33,7 @@ router.get('/users/me', auth, getUser);
 router.patch(
   '/users/me',
   auth,
+  editProfileValidator,
   editProfile,
 );
 

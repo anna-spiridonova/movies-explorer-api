@@ -1,5 +1,5 @@
 const { celebrate, Joi } = require('celebrate');
-const urlPattern = require('../utils/constants');
+const { urlPattern } = require('../utils/constants');
 
 const registerValidator = celebrate({
   body: Joi.object().keys({

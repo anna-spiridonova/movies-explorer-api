@@ -5,7 +5,9 @@ const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
 const ConflictError = require('../errors/ConflictError');
 const UnauthorizedError = require('../errors/UnauthorizedError');
-// const { NODE_ENV, JWT_SECRET } = process.env;
+const { devSecret } = require('../utils/constants');
+
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const register = (req, res, next) => {
   const {
@@ -40,7 +42,7 @@ const login = (req, res, next) => {
       return bcrypt.compare(password, user.password)
         .then((matched) => {
           if (!matched) return next(new UnauthorizedError('Неправильные почта или пароль'));
-          const token = jwt.sign({ _id: user._id }, 'dev-secret', { expiresIn: '7d' });
+          const token = jwt.sign({ _id: user._id }, NODE_ENV !== 'production' ? devSecret : JWT_SECRET, { expiresIn: '7d' });
           res.cookie('jwt', token, {
             httpOnly: true,
             maxAge: 3600000 * 24 * 7,

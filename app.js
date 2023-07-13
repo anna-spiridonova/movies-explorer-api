@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
@@ -13,6 +14,17 @@ const { mongoAdress } = require('./utils/constants');
 const { PORT = 3000, DB_ADRESS, NODE_ENV } = process.env;
 
 const app = express();
+
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://api.movies.project.nomoreparties.sbs',
+    'https://movies.project.nomoreparties.sbs',
+    'http://api.movies.project.nomoreparties.sbs',
+    'http://movies.project.nomoreparties.sbs',
+  ],
+  credentials: true,
+}));
 
 app.use(helmet());
 

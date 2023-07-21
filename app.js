@@ -12,7 +12,7 @@ const limiter = require('./middlewares/limiter');
 const { mongoAdress } = require('./utils/constants');
 
 const { PORT = 3000, DB_ADRESS, NODE_ENV } = process.env;
-// const { PORT = 3001 } = process.env;
+// const { PORT = 3001, DB_ADRESS, NODE_ENV } = process.env;
 
 const app = express();
 
